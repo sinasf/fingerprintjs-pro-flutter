@@ -89,10 +89,8 @@ class IpLocation {
   final num longitude;
   final String postalCode;
   final String timezone;
-  final City city;
   final Country country;
   final Continent continent;
-  final List<Subdivision> subdivisions;
 
   IpLocation.fromJson(Map<String, dynamic> json)
       : accuracyRadius = json['accuracyRadius'],
@@ -100,11 +98,8 @@ class IpLocation {
         longitude = json['longitude'],
         postalCode = json['postalCode'],
         timezone = json['timezone'],
-        city = City.fromJson(json['city']),
         country = Country.fromJson(json['country']),
-        continent = Continent.fromJson(json['continent']),
-        subdivisions = List<Subdivision>.from((json['subdivisions'] as List)
-            .map((subdivision) => Subdivision.fromJson(subdivision)));
+        continent = Continent.fromJson(json['continent']);
 
   Map toJson() {
     Map fromObject = {
@@ -113,11 +108,8 @@ class IpLocation {
       "longitude": longitude,
       "postalCode": postalCode,
       "timezone": timezone,
-      "city": city.toJson(),
       "country": country.toJson(),
       "continent": continent.toJson(),
-      "subdivisions":
-          subdivisions.map((subdivision) => subdivision.toJson()).toList(),
     };
 
     return fromObject;
